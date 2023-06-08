@@ -1,10 +1,11 @@
+import { ActionType, PostsType } from "../../types";
 import { SET_POSTS } from "../constants";
 
-const initialState = {
+const initialState: PostsType = {
   posts: [],
 }
 
-const posts = (state = initialState, { type, payload }) => {
+const posts = (state = initialState, { type, payload }: ActionType) => {
   switch (type) {
     case SET_POSTS:
       return {
