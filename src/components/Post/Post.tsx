@@ -50,7 +50,7 @@ const Post = ({ post }) => {
         </div>
 
         <div className="col-md-5">
-          <Link to={`/user/${post.userId}`}>
+          <Link to={`/users/${post.userId}`}>
             <img
               className="d-block card__avatar"
               src="https://memepedia.ru/wp-content/uploads/2019/12/screenshot_22-1.png"

@@ -4,7 +4,6 @@ import { SET_COMMENTS_BY_ID } from "../constants";
 const initialState: initialCommentsType = {
   comments: {},
 }
-// : ActionCommentsById
 const comments = (state = initialState, { type, payload }: ActionCommentsById) => {
   switch (type) {
     case SET_COMMENTS_BY_ID:

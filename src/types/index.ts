@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
 export type initialTypeLoader = {
-  isLoadingData: boolean;
+  [key: string]: boolean;
 }
 
 interface Post {
@@ -65,4 +65,37 @@ export type FormSearchProps = {
 export type FormCheckFilterProps = {
   isSortedActive: boolean;
   setIsSortedActive: (isActive: boolean) => void;
-}
+};
+
+interface Address {
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  geo: {
+    lat: string;
+    lng: string;
+  };
+};
+
+interface Company {
+  name: string;
+  catchPhrase: string;
+  bs: string;
+};
+
+export type UserDataType = {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  address: Address;
+  phone: string;
+  website: string;
+  company: Company;
+};
+
+export type ActionSagaUser = {
+  type: string;
+  payload: number;
+};

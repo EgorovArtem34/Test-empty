@@ -1,9 +1,10 @@
 import { ActionLoader } from "../../types";
-import { SET_LOADING_DATA, SET_LOADING_COMMENTS } from "../constants";
+import { SET_LOADING_DATA, SET_LOADING_COMMENTS, SET_LOADING_USER_DATA } from "../constants";
 
 export const initialStateLoader = {
   isLoadingData: false,
   isLoadingComments: false,
+  isLoadingUserData: false,
 }
 
 const loader = (state = initialStateLoader, { type, payload }: ActionLoader) => {
@@ -17,6 +18,12 @@ const loader = (state = initialStateLoader, { type, payload }: ActionLoader) => 
       return {
         ...state,
         isLoadingComments: payload,
+      }
+    case SET_LOADING_USER_DATA:
+      console.log("LOADING??")
+      return {
+        ...state,
+        isLoadingUserData: payload,
       }
     default:
       return state;
