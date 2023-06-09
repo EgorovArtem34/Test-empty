@@ -12,7 +12,6 @@ const Post = ({ post }) => {
   const dispatch = useAppDispatch();
   const { comments }: CommentsType = useAppSelector((state) => state.comments);
   const currentComments = comments[post.id] || [];
-  console.log('comments', currentComments);
   const [isOpenCollapse, setIsOpenCollapse] = useState(false);
 
   const handleClickComment = (id: number) => {

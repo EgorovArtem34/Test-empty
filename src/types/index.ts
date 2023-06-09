@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export type initialTypeLoader = {
   isLoadingData: boolean;
 }
@@ -56,4 +58,11 @@ export type ActionSagaCommentsById = {
   payload: number;
 };
 
+export type FormSearchProps = {
+  setSearchValue: Dispatch<SetStateAction<string>>;
+};
 
+export type FormCheckFilterProps = {
+  isSortedActive: boolean;
+  setIsSortedActive: (isActive: boolean) => void;
+}
