@@ -6,6 +6,7 @@ import './posts.scss';
 import Loader from '../Loader/Loader';
 import { PostsType, initialTypeLoader } from '../../types';
 import Post from '../Post/Post';
+import Header from '../Header/Header';
 
 const Posts = () => {
   const dispatch = useAppDispatch();
@@ -31,22 +32,25 @@ const Posts = () => {
   };
 
   return (
-    <Container>
-      {currentPosts.map((post) => (
-        <Post post={post} key={post.id} />
-      ))}
-      <Pagination>
-        {Array.from({ length: Math.ceil(posts.length / postsPerPage) }).map((_, index) => (
-          <Pagination.Item
-            key={index + 1}
-            active={index + 1 === currentPage}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </Pagination.Item>
+    <>
+      <Header />
+      <Container>
+        {currentPosts.map((post) => (
+          <Post post={post} key={post.id} />
         ))}
-      </Pagination>
-    </Container>
+        <Pagination>
+          {Array.from({ length: Math.ceil(posts.length / postsPerPage) }).map((_, index) => (
+            <Pagination.Item
+              key={index + 1}
+              active={index + 1 === currentPage}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      </Container>
+    </>
   );
 }
 
