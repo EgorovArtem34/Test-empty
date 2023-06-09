@@ -22,9 +22,9 @@ export function* handlePosts() {
 export function* handleComments({ payload }: ActionSagaCommentsById) {
   try {
     yield put({ type: SET_LOADING_COMMENTS, payload: true });
-    const data: CommentsType = yield call(getCommentsById, payload);
+    const comments: CommentsType = yield call(getCommentsById, payload);
     yield delay(delayTime);
-    yield put(setCommentsById(data));
+    yield put(setCommentsById({ payload, comments }));
     yield put({ type: SET_LOADING_COMMENTS, payload: false });
   } catch (err) {
     console.log(err);

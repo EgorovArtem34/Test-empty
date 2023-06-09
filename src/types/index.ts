@@ -1,6 +1,3 @@
-import { SET_POSTS } from "../store/constants";
-
-
 export type initialTypeLoader = {
   isLoadingData: boolean;
 }
@@ -10,13 +7,14 @@ interface Post {
   id: number;
   title: string;
   body: string;
-}
+};
 
 export type PostsType = {
   posts: Post[],
-}
+};
+
 export type ActionType = {
-  type: typeof SET_POSTS;
+  type: string;
   payload: Post[];
 };
 
@@ -25,7 +23,7 @@ export type DataType = Post[];
 export type ActionLoader = {
   type: string;
   payload: boolean;
-}
+};
 
 export interface Comment {
   postId: number;
@@ -37,17 +35,25 @@ export interface Comment {
 
 export type CommentsType = {
   comments: Comment[],
+  [Symbol.iterator]: () => Iterator<Comment>;
 }
 export type initialCommentsType = {
-  comments: CommentsType
-}
+  comments: {
+    [key: string]: Comment[];
+  };
+};
 
 export type ActionCommentsById = {
   type: string;
-  payload: CommentsType;
-}
+  payload: {
+    payload: number;
+    comments: CommentsType;
+  };
+};
 
 export type ActionSagaCommentsById = {
   type: string;
   payload: number;
-}
+};
+
+

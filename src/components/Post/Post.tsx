@@ -11,6 +11,8 @@ import Comment from '../Comment/Comment';
 const Post = ({ post }) => {
   const dispatch = useAppDispatch();
   const { comments }: CommentsType = useAppSelector((state) => state.comments);
+  const currentComments = comments[post.id] || [];
+  console.log('comments', currentComments);
   const [isOpenCollapse, setIsOpenCollapse] = useState(false);
 
   const handleClickComment = (id: number) => {
@@ -19,7 +21,7 @@ const Post = ({ post }) => {
     }
     setIsOpenCollapse(!isOpenCollapse)
   }
-  console.log(comments);
+
   return (
     <div className="card p-2 mb-4" key={post.id}>
       <div className="row ">
@@ -40,7 +42,7 @@ const Post = ({ post }) => {
             </Button>
             <Collapse in={isOpenCollapse}>
               <div id="comments">
-                {comments.map((comment) => (
+                {currentComments.map((comment) => (
                   <Comment comment={comment} key={comment.id} />
                 ))}
               </div>
