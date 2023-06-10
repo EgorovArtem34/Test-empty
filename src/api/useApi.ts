@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Comment, DataType, UserDataType } from '../types';
+import { Comment, DataType, UserDataType, UserPostsType } from '../types';
 
 const url = 'https://jsonplaceholder.typicode.com';
 const createUrl = (url: string, resources: string, id?: number, type?: string): string => [url, resources, id, type].join('/');
@@ -23,7 +23,13 @@ const useApi = () => {
     return data;
   };
 
-  return { getPosts, getCommentsById, getUserData };
+  const getUserPosts = async (id: number) => {
+    const createdUrl = createUrl(url, 'users', id, 'posts');
+    const { data } = await axios.get<UserPostsType>(createdUrl);
+    return data;
+  };
+
+  return { getPosts, getCommentsById, getUserData, getUserPosts };
 };
 
 export default useApi;

@@ -4,8 +4,11 @@ import {
   SET_LOADING_DATA,
   FETCH_COMMENTS_BY_ID,
   SET_COMMENTS_BY_ID,
-  FETCH_USER_DATA, SET_USER,
-  SET_LOADING_USER_DATA
+  FETCH_USER_DATA,
+  SET_USER_DATA,
+  SET_LOADING_USER_DATA,
+  SET_LOADING_USER_POSTS,
+  SET_USER_POSTS,
 } from "../constants";
 
 export const fetchPosts = () => ({
@@ -42,7 +45,17 @@ export const setLoadingUserData = (payload) => ({
   payload,
 });
 
+export const setLoadingUserPosts = (payload) => ({
+  type: SET_LOADING_USER_POSTS,
+  payload,
+});
+
 export const setUserData = (payload) => ({
-  type: SET_USER,
+  type: SET_USER_DATA,
+  payload,
+});
+
+export const setUserPosts = (payload) => ({
+  type: SET_USER_POSTS,
   payload,
 });

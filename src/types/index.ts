@@ -53,7 +53,7 @@ export type ActionCommentsById = {
   };
 };
 
-export type ActionSagaCommentsById = {
+export type ActionSaga = {
   type: string;
   payload: number;
 };
@@ -95,7 +95,23 @@ export type UserDataType = {
   company: Company;
 };
 
-export type ActionSagaUser = {
+export type UserPostsType = {
+  userId: number;
+  id: number;
+  title: string;
+  body: string;
+};
+
+export type UserPayloadType = {
   type: string;
   payload: number;
+};
+
+export type ActionSagaUser = {
+  payload: number;
+};
+
+export type ActionUserType = {
+  type: string;
+  payload: UserDataType[] | UserPostsType[];
 };
