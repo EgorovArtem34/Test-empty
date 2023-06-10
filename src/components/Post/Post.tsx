@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Container, Pagination, Button, Collapse } from 'react-bootstrap';
 import { fetchPosts, fetchCommentsById } from '../../store/actions/actionCreator';
@@ -15,10 +15,8 @@ const Post = ({ post }) => {
   const [isOpenCollapse, setIsOpenCollapse] = useState(false);
 
   const handleClickComment = (id: number) => {
-    if (true) {
-      dispatch(fetchCommentsById(id));
-    }
-    setIsOpenCollapse(!isOpenCollapse)
+    dispatch(fetchCommentsById(id));
+    setIsOpenCollapse(!isOpenCollapse);
   }
 
   return (

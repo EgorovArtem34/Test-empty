@@ -14,6 +14,7 @@ const Posts = () => {
   const dispatch = useAppDispatch();
   const { posts }: PostsType = useAppSelector((state) => state.posts);
   const { isLoadingData }: initialTypeLoader = useAppSelector((state) => state.loader);
+  const { postsError } = useAppSelector((state) => state.errors);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState('');
   const [isSortedActive, setIsSortedActive] = useState(false);
@@ -23,6 +24,9 @@ const Posts = () => {
     dispatch(fetchPosts());
   }, []);
 
+  if (postsError) {
+    return <span>{postsError}</span>
+  }
   if (isLoadingData) {
     return <Loader />
   }
@@ -48,25 +52,35 @@ const Posts = () => {
     <>
       <Header />
       <Container>
-        <FormSearch setSearchValue={setSearchValue} />
-        <FormCheckFilter isSortedActive={isSortedActive} setIsSortedActive={setIsSortedActive} />
-        {currentPosts.length === 0
-          ? <span>По вашему запросу ничего не найдено</span>
-          : createPosts()}
-        <Pagination>
-          {Array.from({ length: Math.ceil(sortedPosts.length / postsPerPage) }).map((_, index) => (
-            <Pagination.Item
-              key={index + 1}
-              active={index + 1 === currentPage}
-              onClick={() => handlePageChange(index + 1)}
-            >
-              {index + 1}
-            </Pagination.Item>
-          ))}
-        </Pagination>
-      </Container>
-    </>
-  );
+      {postsError ? (
+        <span>{postsError}</span>
+      ) : (
+        <>
+          <FormSearch setSearchValue={setSearchValue} />
+          <FormCheckFilter isSortedActive={isSortedActive} setIsSortedActive={setIsSortedActive} />
+          {currentPosts.length === 0 ? (
+            <span>По вашему запросу ничего не найдено</span>
+          ) : (
+            createPosts()
+          )}
+          <Pagination>
+            {Array.from({ length: Math.ceil(sortedPosts.length / postsPerPage) }).map(
+              (_, index) => (
+                <Pagination.Item
+                  key={index + 1}
+                  active={index + 1 === currentPage}
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </Pagination.Item>
+              )
+            )}
+          </Pagination>
+        </>
+      )}
+    </Container>
+  </>
+);
 }
 
 export default Posts;

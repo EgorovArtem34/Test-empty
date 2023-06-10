@@ -12,6 +12,7 @@ const User = () => {
   const dispatch = useAppDispatch();
   const { userData: { userData }, userPosts: { userPosts } } = useAppSelector((state) => state.user);
   const { isLoadingUserData, isLoadingUserPosts }: initialTypeLoader = useAppSelector((state) => state.loader);
+  const { userPostsError, userDataError } = useAppSelector((state) => state.errors);
   const { userId } = useParams();
   const navigate = useNavigate();
 
@@ -41,18 +42,26 @@ const User = () => {
     <>
       <Header />
       <Container>
-        <Card>
-          <Card.Body>
-            <Card.Title>{userData?.name}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{userData?.username}</Card.Subtitle>
-            <Card.Text>Email: {userData?.email}</Card.Text>
-            <Card.Text>Город: {userData?.address?.city}</Card.Text>
-            <Card.Text>Сайт: {userData?.website}</Card.Text>
-            <Card.Text>Компания: {userData?.company?.name}</Card.Text>
-            <Card.Text>Количество постов: {userPosts?.length}</Card.Text>
-          </Card.Body>
-        </Card>
-        <Button onClick={handleBack} type="button" className="ml-auto mt-2">Назад</Button>
+        {userDataError && <span>{userDataError}</span>}
+        {userPostsError && <span>{userPostsError}</span>}
+        {!userDataError && !userPostsError && (
+          <>
+            <Card>
+              <Card.Body>
+                <Card.Title>{userData?.name}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{userData?.username}</Card.Subtitle>
+                <Card.Text>Email: {userData?.email}</Card.Text>
+                <Card.Text>Город: {userData?.address?.city}</Card.Text>
+                <Card.Text>Сайт: {userData?.website}</Card.Text>
+                <Card.Text>Компания: {userData?.company?.name}</Card.Text>
+                <Card.Text>Количество постов: {userPosts?.length}</Card.Text>
+              </Card.Body>
+            </Card>
+          </>
+        )}
+        <Button onClick={handleBack} type="button" className="ml-auto mt-2">
+          Назад
+        </Button>
       </Container>
     </>
   );

@@ -3,9 +3,12 @@ import Loader from "../Loader/Loader";
 
 const Comment = ({ comment }) => {
   const { isLoadingComments } = useAppSelector((state) => state.loader);
-
+  const { commentsError } = useAppSelector((state) => state.errors);
   if (isLoadingComments) {
     return <Loader />
+  }
+  if (commentsError) {
+    return <span>{commentsError}</span>
   }
   return (
     <div className="card mb-3">

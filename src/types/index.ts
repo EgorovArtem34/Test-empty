@@ -115,3 +115,8 @@ export type ActionUserType = {
   type: string;
   payload: UserDataType[] | UserPostsType[];
 };
+
+export type ActionErrorsType = {
+  type: string;
+  payload: string;
+};
