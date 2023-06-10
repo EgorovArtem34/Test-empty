@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/index.css';
 import Posts from './components/Posts/Posts';
 import User from './components/User/User';
+import AboutMe from './components/AboutMe/AboutMe';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path={'/'} element={<Posts />} />
         <Route path={'/users/:userId'} element={<User />} />
+        <Route path={'/about-me'} element={<AboutMe />} />
       </Routes>
       <ToastContainer />
     </>
