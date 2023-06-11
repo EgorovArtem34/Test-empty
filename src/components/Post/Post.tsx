@@ -1,23 +1,21 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Pagination, Button, Collapse } from 'react-bootstrap';
-import { fetchPosts, fetchCommentsById } from '../../store/actions/actionCreator';
+import { Button, Collapse } from 'react-bootstrap';
+import { fetchCommentsById } from '../../store/actions/actionCreator';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-// import './posts.scss';
-// import Loader from '../Loader/Loader';
-import { CommentsType, PostsType, initialTypeLoader } from '../../types';
+import { CommentType, CommentsSelectorType, PostType } from '../../types';
 import Comment from '../Comment/Comment';
 
-const Post = ({ post }) => {
+const Post = ({ post }: { post: PostType }) => {
   const dispatch = useAppDispatch();
-  const { comments }: CommentsType = useAppSelector((state) => state.comments);
+  const { comments }: CommentsSelectorType = useAppSelector((state) => state.comments);
   const currentComments = comments[post.id] || [];
   const [isOpenCollapse, setIsOpenCollapse] = useState(false);
 
   const handleClickComment = (id: number) => {
     dispatch(fetchCommentsById(id));
     setIsOpenCollapse(!isOpenCollapse);
-  }
+  };
 
   return (
     <div className="card p-2 mb-4" key={post.id}>
@@ -39,7 +37,7 @@ const Post = ({ post }) => {
             </Button>
             <Collapse in={isOpenCollapse}>
               <div id="comments">
-                {currentComments.map((comment) => (
+                {currentComments.map((comment: CommentType) => (
                   <Comment comment={comment} key={comment.id} />
                 ))}
               </div>
@@ -58,7 +56,6 @@ const Post = ({ post }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 export default Post;
-

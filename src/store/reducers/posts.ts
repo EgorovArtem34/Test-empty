@@ -1,9 +1,9 @@
-import { ActionType, PostsType } from "../../types";
-import { SET_POSTS } from "../constants";
+import { ActionType, PostsType } from '../../types';
+import { SET_POSTS } from '../constants';
 
 const initialState: PostsType = {
   posts: [],
-}
+};
 
 const posts = (state = initialState, { type, payload }: ActionType) => {
   switch (type) {
@@ -11,7 +11,7 @@ const posts = (state = initialState, { type, payload }: ActionType) => {
       return {
         ...state,
         posts: payload,
-      }
+      };
     default:
       return state;
   }

@@ -1,13 +1,12 @@
-import { ActionCommentsById, initialCommentsType } from "../../types";
-import { SET_COMMENTS_BY_ID } from "../constants";
+import { ActionCommentsById, InitialCommentsType } from '../../types';
+import { SET_COMMENTS_BY_ID } from '../constants';
 
-const initialState: initialCommentsType = {
+const initialState: InitialCommentsType = {
   comments: {},
-}
+};
 const comments = (state = initialState, { type, payload }: ActionCommentsById) => {
   switch (type) {
     case SET_COMMENTS_BY_ID:
-      console.log(payload);
       return {
         ...state,
         comments: {

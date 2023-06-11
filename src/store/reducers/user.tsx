@@ -1,10 +1,10 @@
-import { ActionUserType } from "../../types";
-import { SET_USER_DATA, SET_USER_POSTS } from "../constants";
+import { ActionUserType, InitialStateUserType } from '../../types';
+import { SET_USER_DATA, SET_USER_POSTS } from '../constants';
 
-const initialState = {
+const initialState: InitialStateUserType = {
   userData: [],
   userPosts: [],
-}
+};
 
 const posts = (state = initialState, { type, payload }: ActionUserType) => {
   switch (type) {
@@ -12,12 +12,12 @@ const posts = (state = initialState, { type, payload }: ActionUserType) => {
       return {
         ...state,
         userData: payload,
-      }
+      };
     case SET_USER_POSTS:
       return {
         ...state,
         userPosts: payload,
-      }
+      };
     default:
       return state;
   }

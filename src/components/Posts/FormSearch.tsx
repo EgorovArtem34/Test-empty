@@ -5,13 +5,12 @@ import { FormSearchProps } from '../../types/index';
 const FormSearch = ({ setSearchValue }: FormSearchProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchTimeoutId, setSearchTimeoutId] = useState<null | number>(null);
-  const timeout = 300;
+  const timeout = 500;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const newSearchQuery = e.target.value
+    const newSearchQuery = e.target.value;
     setSearchQuery(newSearchQuery);
-
     if (searchTimeoutId) {
       clearTimeout(searchTimeoutId);
     }
@@ -34,4 +33,3 @@ const FormSearch = ({ setSearchValue }: FormSearchProps) => {
 };
 
 export default FormSearch;
-

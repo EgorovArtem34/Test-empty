@@ -4,16 +4,17 @@ import { fetchPosts } from '../../store/actions/actionCreator';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import './posts.scss';
 import Loader from '../Loader/Loader';
-import { PostsType, initialTypeLoader } from '../../types';
+import { PostsType, InitialLoaderType } from '../../types';
 import Post from '../Post/Post';
 import Header from '../Header/Header';
 import FormSearch from './FormSearch';
 import FormCheckFilter from './FormCheckFilter';
+import { compareTitles, createPageNumbers } from '../../utils/utils';
 
 const Posts = () => {
   const dispatch = useAppDispatch();
   const { posts }: PostsType = useAppSelector((state) => state.posts);
-  const { isLoadingData }: initialTypeLoader = useAppSelector((state) => state.loader);
+  const { isLoadingData }: InitialLoaderType = useAppSelector((state) => state.loader);
   const { postsError } = useAppSelector((state) => state.errors);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState('');
@@ -22,23 +23,27 @@ const Posts = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
-  }, []);
+  }, [dispatch]);
 
   if (postsError) {
-    return <span>{postsError}</span>
+    return <span>{postsError}</span>;
   }
   if (isLoadingData) {
-    return <Loader />
+    return <Loader />;
   }
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
+
   const filteredPosts = searchValue
     ? posts.filter((post) => post.title.includes(searchValue))
     : posts;
-  const sortedPosts = isSortedActive
-    ? filteredPosts.slice().sort((a, b) => a.title < b.title ? -1 : a.title > b.title ? 1 : 0)
-    : filteredPosts;
+
+  let sortedPosts = filteredPosts;
+
+  if (isSortedActive) {
+    sortedPosts = isSortedActive ? filteredPosts.slice().sort(compareTitles) : filteredPosts;
+  }
   const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   const handlePageChange = (pageNumber: number) => {
@@ -47,40 +52,44 @@ const Posts = () => {
 
   const createPosts = () => (currentPosts.map((post) => (
     <Post post={post} key={post.id} />
-  )))
+  )));
+  const pageNumbers = createPageNumbers(sortedPosts.length, postsPerPage);
   return (
     <>
       <Header />
       <Container>
-      {postsError ? (
-        <span>{postsError}</span>
-      ) : (
-        <>
-          <FormSearch setSearchValue={setSearchValue} />
-          <FormCheckFilter isSortedActive={isSortedActive} setIsSortedActive={setIsSortedActive} />
-          {currentPosts.length === 0 ? (
-            <span>По вашему запросу ничего не найдено</span>
-          ) : (
-            createPosts()
-          )}
-          <Pagination>
-            {Array.from({ length: Math.ceil(sortedPosts.length / postsPerPage) }).map(
-              (_, index) => (
-                <Pagination.Item
-                  key={index + 1}
-                  active={index + 1 === currentPage}
-                  onClick={() => handlePageChange(index + 1)}
-                >
-                  {index + 1}
-                </Pagination.Item>
-              )
+        {postsError ? (
+          <span>{postsError}</span>
+        ) : (
+          <>
+            <FormSearch setSearchValue={setSearchValue} />
+            <FormCheckFilter
+              isSortedActive={isSortedActive}
+              setIsSortedActive={setIsSortedActive}
+            />
+            {currentPosts.length === 0 ? (
+              <span>По вашему запросу ничего не найдено</span>
+            ) : (
+              createPosts()
             )}
-          </Pagination>
-        </>
-      )}
-    </Container>
-  </>
-);
-}
+            <Pagination>
+              {pageNumbers.map(
+                (pageNumber) => (
+                  <Pagination.Item
+                    key={pageNumber}
+                    active={pageNumber === currentPage}
+                    onClick={() => handlePageChange(pageNumber)}
+                  >
+                    {pageNumber}
+                  </Pagination.Item>
+                ),
+              )}
+            </Pagination>
+          </>
+        )}
+      </Container>
+    </>
+  );
+};
 
 export default Posts;

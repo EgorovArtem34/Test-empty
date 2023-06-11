@@ -1,3 +1,4 @@
+import { UserDataType, UserPostType } from '../../types';
 import {
   FETCH_POSTS,
   SET_POSTS,
@@ -9,53 +10,53 @@ import {
   SET_LOADING_USER_DATA,
   SET_LOADING_USER_POSTS,
   SET_USER_POSTS,
-} from "../constants";
+} from '../constants';
 
 export const fetchPosts = () => ({
   type: FETCH_POSTS,
 });
 
-export const setPosts = (payload) => ({
+export const setPosts = (payload: any) => ({
   type: SET_POSTS,
   payload,
 });
 
-export const setLoadingData = (payload) => ({
+export const setLoadingData = (payload: any) => ({
   type: SET_LOADING_DATA,
   payload,
 });
 
-export const fetchCommentsById = (payload) => ({
+export const fetchCommentsById = (payload: any) => ({
   type: FETCH_COMMENTS_BY_ID,
   payload,
 });
 
-export const setCommentsById = (payload) => ({
+export const setCommentsById = (payload: any) => ({
   type: SET_COMMENTS_BY_ID,
   payload,
 });
 
-export const fetchUserData = (payload) => ({
+export const fetchUserData = (payload: any) => ({
   type: FETCH_USER_DATA,
   payload,
 });
 
-export const setLoadingUserData = (payload) => ({
+export const setLoadingUserData = (payload: any) => ({
   type: SET_LOADING_USER_DATA,
   payload,
 });
 
-export const setLoadingUserPosts = (payload) => ({
+export const setLoadingUserPosts = (payload: any) => ({
   type: SET_LOADING_USER_POSTS,
   payload,
 });
 
-export const setUserData = (payload) => ({
+export const setUserData = (payload: any) => ({
   type: SET_USER_DATA,
   payload,
 });
 
-export const setUserPosts = (payload) => ({
+export const setUserPosts = (payload: any) => ({
   type: SET_USER_POSTS,
   payload,
 });

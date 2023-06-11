@@ -2,7 +2,6 @@ import { FormCheck } from 'react-bootstrap';
 import { FormCheckFilterProps } from '../../types';
 
 const FormCheckFilter = ({ isSortedActive, setIsSortedActive }: FormCheckFilterProps) => {
-
   const handleSorted = () => {
     setIsSortedActive(!isSortedActive);
   };
@@ -16,7 +15,6 @@ const FormCheckFilter = ({ isSortedActive, setIsSortedActive }: FormCheckFilterP
       onChange={handleSorted}
       className="mb-3"
     />
-  )
+  );
 };
 export default FormCheckFilter;
-
