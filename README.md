@@ -27,8 +27,8 @@
 
 
 ## Установка
-1. Склонируйте репозиторий `git clone https://github.com/EgorovArtem34/...`
-2. Перейдите в директорию проекта `cd ...`
+1. Склонируйте репозиторий `git clone https://github.com/EgorovArtem34/mitraSoft`
+2. Перейдите в директорию проекта `cd mitraSoft`
 3. Установите зависимости `make install`
 5. Запустите локальную версию `make start`
 6. Нажмите на кнопку `h` для показа настроек
@@ -46,5 +46,3 @@
 ![](https://raw.githubusercontent.com/EgorovArtem34/screenshots/master/mitraSoft/3.JPG)
 ![](https://raw.githubusercontent.com/EgorovArtem34/screenshots/master/mitraSoft/4.JPG)
 ![](https://raw.githubusercontent.com/EgorovArtem34/screenshots/master/mitraSoft/5.JPG)
-
-
