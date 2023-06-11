@@ -11,6 +11,8 @@
 3. Подробности о пользователе (куда необходимо вывести информацию о пользователе и список его постов)
 
 Получить данные необходимо через фейковое api https://jsonplaceholder.typicode.com.
+
+
 [vercel deploy](https://mitrasoft-egorovartem34.vercel.app/)
 
 

@@ -23,7 +23,7 @@ const Header = () => (
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Nav.Link href="/">Посты</Nav.Link>
-              <Nav.Link href="/about-me">Обо мне</Nav.Link>
+              <Nav.Link href="/about">Обо мне</Nav.Link>
               <LuPersonStanding className="avatar" />
               <span>Артем Егоров</span>
               <span>

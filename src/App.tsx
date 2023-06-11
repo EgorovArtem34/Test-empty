@@ -12,7 +12,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Posts />} />
       <Route path="/users/:userId" element={<User />} />
-      <Route path="/about-me" element={<AboutMe />} />
+      <Route path="/about" element={<AboutMe />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
     <ToastContainer />
